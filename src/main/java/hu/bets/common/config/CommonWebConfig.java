@@ -1,6 +1,7 @@
 package hu.bets.common.config;
 
 import hu.bets.common.util.EnvironmentVarResolver;
+import hu.bets.common.config.model.Resources;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -30,9 +31,9 @@ public class CommonWebConfig {
     }
 
     @Bean
-    public ResourceConfig resourceConfig(Object... resources) {
+    public ResourceConfig resourceConfig(Resources resources) {
         ResourceConfig resourceConfig = new ResourceConfig();
-        for (Object resource : resources) {
+        for (Object resource : resources.getResources()) {
             resourceConfig.register(resource);
         }
         resourceConfig.register(JacksonFeature.class);
