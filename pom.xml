@@ -19,6 +19,7 @@
         <spring.version>4.3.7.RELEASE</spring.version>
         <glassfish.version>2.25.1</glassfish.version>
         <jetty.version>9.4.3.v20170317</jetty.version>
+        <project.scm.id>git</project.scm.id>
     </properties>
 
     <dependencies>
