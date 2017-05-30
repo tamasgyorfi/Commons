@@ -5,13 +5,13 @@
 
     <groupId>hu.bets</groupId>
     <artifactId>common-infrastructure</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <scm>
         <url>https://github.com/tamasgyorfi/Commons.git</url>
         <connection>scm:git:git@github.com:tamasgyorfi/Commons.git</connection>
         <developerConnection>scm:git:git@github.com:tamasgyorfi/Commons.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>common-infrastructure-1.0.3</tag>
     </scm>
 
     <properties>
