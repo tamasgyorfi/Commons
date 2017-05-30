@@ -100,6 +100,12 @@
             <version>4.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.everit.json</groupId>
+            <artifactId>org.everit.json.schema</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -173,20 +179,10 @@
 
     <distributionManagement>
         <repository>
-            <id>myMavenRepo.write</id>
-            <url>${myMavenRepo.write.url}</url>
+            <id>bintray-tamasgyorfi-maven</id>
+            <name>tamasgyorfi-maven</name>
+            <url>https://api.bintray.com/maven/tamasgyorfi/maven/Commons/;publish=1</url>
         </repository>
-        <snapshotRepository>
-            <id>myMavenRepo.write</id>
-            <url>${myMavenRepo.write.url}</url>
-        </snapshotRepository>
     </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>myMavenRepo.read</id>
-            <url>${myMavenRepo.read.url}</url>
-        </repository>
-    </repositories>
 
 </project>
