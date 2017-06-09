@@ -5,8 +5,10 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import hu.bets.common.util.EnvironmentVarResolver;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,6 +23,7 @@ public class CommonMessagingConfig {
     private static final Logger LOGGER = Logger.getLogger(CommonMessagingConfig.class);
 
     @Bean
+    @Scope("prototype")
     public Channel channel(Connection connection) {
         try {
             return connection.createChannel();
