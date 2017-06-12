@@ -1,6 +1,6 @@
 package hu.bets.common.config.model;
 
-import hu.bets.common.util.SchemaValidator;
+import hu.bets.common.util.schema.SchemaValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

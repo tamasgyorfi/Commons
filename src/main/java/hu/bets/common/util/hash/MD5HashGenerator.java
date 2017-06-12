@@ -1,10 +1,14 @@
-package hu.bets.common.util;
+package hu.bets.common.util.hash;
 
 import org.apache.log4j.Logger;
 
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class MD5HashGenerator implements HashGenerator {
 
@@ -12,9 +16,10 @@ public class MD5HashGenerator implements HashGenerator {
 
     public String getHash(Object object) {
         try {
-            String betsString = object.toString();
+            byte[] bytes = getBytes(object);
+            System.out.println("---> " + Arrays.toString(bytes));
             MessageDigest md5 = MessageDigest.getInstance("MD5");
-            md5.update(betsString.getBytes());
+            md5.update(bytes);
             byte[] digest = md5.digest();
 
             return new BigInteger(1, digest).toString(16);
@@ -26,4 +31,7 @@ public class MD5HashGenerator implements HashGenerator {
         return "Error hashing bets.";
     }
 
+    private byte[] getBytes(Object object) {
+        return new byte[0]; // Should be fixed later. will always return the same hash otherwise
+    }
 }

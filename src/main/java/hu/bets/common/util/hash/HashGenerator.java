@@ -1,4 +1,4 @@
-package hu.bets.common.util;
+package hu.bets.common.util.hash;
 
 public interface HashGenerator {
 

@@ -1,4 +1,4 @@
-package hu.bets.common.util;
+package hu.bets.common.util.schema;
 
 import org.everit.json.schema.ValidationException;
 
