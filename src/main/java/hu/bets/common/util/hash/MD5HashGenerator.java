@@ -17,7 +17,6 @@ public class MD5HashGenerator implements HashGenerator {
     public String getHash(Object object) {
         try {
             byte[] bytes = getBytes(object);
-            System.out.println("---> " + Arrays.toString(bytes));
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             md5.update(bytes);
             byte[] digest = md5.digest();
