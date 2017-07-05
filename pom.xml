@@ -219,7 +219,7 @@
     <distributionManagement>
         <repository>
             <id>bintray-tamasgyorfi-maven</id>
-            <name>tamasgyorfi-maven</name>
+            <serviceName>tamasgyorfi-maven</serviceName>
             <url>https://api.bintray.com/maven/tamasgyorfi/maven/Commons/;publish=1</url>
         </repository>
     </distributionManagement>
