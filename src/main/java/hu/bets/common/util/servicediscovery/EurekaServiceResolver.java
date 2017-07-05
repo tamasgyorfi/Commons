@@ -1,37 +1,18 @@
 package hu.bets.common.util.servicediscovery;
 
-import com.netflix.appinfo.ApplicationInfoManager;
-import com.netflix.appinfo.EurekaInstanceConfig;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.appinfo.MyDataCenterInstanceConfig;
-import com.netflix.appinfo.providers.EurekaConfigBasedInstanceInfoProvider;
-import com.netflix.config.DynamicPropertyFactory;
 import com.netflix.discovery.DefaultEurekaClientConfig;
-import com.netflix.discovery.DiscoveryClient;
-import com.netflix.discovery.EurekaClientConfig;
+import com.netflix.discovery.EurekaClient;
 import org.apache.log4j.Logger;
 
-import java.util.Properties;
-
-public class EurekaServiceResolver {
+class EurekaServiceResolver {
 
     private static final Logger LOGGER = Logger.getLogger(EurekaServiceResolver.class);
 
-    private DynamicPropertyFactory configInstance;
-    private DiscoveryClient eurekaClient;
+    private String getEndpointByVipAddress(String vipAddress, EurekaClient eurekaClient) {
 
-    private ApplicationInfoManager initializeApplicationInfoManager(EurekaInstanceConfig instanceConfig) {
-        InstanceInfo instanceInfo = new EurekaConfigBasedInstanceInfoProvider(instanceConfig).get();
-        return new ApplicationInfoManager(instanceConfig, instanceInfo);
-    }
-
-    private DiscoveryClient initializeEurekaClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig clientConfig) {
-        return new DiscoveryClient(applicationInfoManager, clientConfig);
-    }
-
-    private String getEndpointByVipAddress(String vipAddress) {
-
-        InstanceInfo nextServerInfo = null;
+        InstanceInfo nextServerInfo;
         try {
             LOGGER.info("Trying to obtain service endpoint using vipAddress: " + vipAddress);
             nextServerInfo = eurekaClient.getNextServerFromEureka(vipAddress, false);
@@ -43,17 +24,10 @@ public class EurekaServiceResolver {
         return nextServerInfo.getHomePageUrl();
     }
 
-    public String getServiceEndpoint(String name) {
+    String getServiceEndpoint(String name) {
+        EurekaFactory eurekaFactory = new EurekaFactory();
 
-        Properties props = new Properties();
-        props.put("eureka.registration.enabled", "false");
-        props.put("eureka.shouldUseDns", "false");
-        props.put("eureka.serviceUrl.default", "https://user:footballheureka@football-discovery-server.herokuapp.com/eureka/");
-        System.getProperties().putAll(props);
-
-        ApplicationInfoManager applicationInfoManager = initializeApplicationInfoManager(new MyDataCenterInstanceConfig());
-        eurekaClient = initializeEurekaClient(applicationInfoManager, new DefaultEurekaClientConfig());
-
-        return getEndpointByVipAddress(name);
+        EurekaClient eurekaClient = eurekaFactory.getEurekaClient(eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig()), new DefaultEurekaClientConfig());
+        return getEndpointByVipAddress(name, eurekaClient);
     }
 }

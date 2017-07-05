@@ -1,72 +1,60 @@
 package hu.bets.common.util.servicediscovery;
 
 import com.netflix.appinfo.ApplicationInfoManager;
-import com.netflix.appinfo.EurekaInstanceConfig;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.appinfo.MyDataCenterInstanceConfig;
-import com.netflix.appinfo.providers.EurekaConfigBasedInstanceInfoProvider;
-import com.netflix.config.DynamicPropertyFactory;
 import com.netflix.discovery.DefaultEurekaClientConfig;
-import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.EurekaClientConfig;
-import hu.bets.common.util.EnvironmentVarResolver;
 import org.apache.log4j.Logger;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class EurekaRegistrationHandler {
+class EurekaRegistrationHandler {
 
-    public static final String EUREKA_URL = "EUREKA_URL";
     private static final Logger LOGGER = Logger.getLogger(EurekaRegistrationHandler.class);
-    private DynamicPropertyFactory configInstance;
+    private static final int RETRY_WAIT_TIME = 5;
 
-    private ApplicationInfoManager initializeApplicationInfoManager(EurekaInstanceConfig instanceConfig) {
-        InstanceInfo instanceInfo = new EurekaConfigBasedInstanceInfoProvider(instanceConfig).get();
-        return new ApplicationInfoManager(instanceConfig, instanceInfo);
-    }
-
-    private EurekaClient initializeEurekaClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig clientConfig) {
-        return new DiscoveryClient(applicationInfoManager, clientConfig);
-    }
-
-    private void waitForRegistrationWithEureka(EurekaClient eurekaClient) {
-        String vipAddress = EnvironmentVarResolver.getEnvVar(EUREKA_URL);
-        LOGGER.info("Checking eureka server at: " + vipAddress);
+    protected void waitForRegistrationWithEureka(String vipAddress, EurekaClient eurekaClient, int retrySeconds) {
+        LOGGER.info("Registering service with name: " + vipAddress);
         InstanceInfo nextServerInfo = null;
+        int retries = 5;
+
         while (nextServerInfo == null) {
             try {
                 nextServerInfo = eurekaClient.getNextServerFromEureka(vipAddress, false);
             } catch (Exception e) {
                 LOGGER.info("Waiting ... verifying service registration with eureka ...");
+                LOGGER.error("", e);
+                retries--;
+                if (retries == 0) {
+                    throw new UnableToRegisterServiceException("Could not register service: " + vipAddress, e);
+                }
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.SECONDS.sleep(retrySeconds);
                 } catch (InterruptedException e1) {
                     // Do nothing here.
                 }
             }
         }
+
     }
 
-    private void register(Properties props) {
-        System.getProperties().putAll(props);
+    private void register(String name) {
+        EurekaFactory eurekaFactory = new EurekaFactory();
+        ApplicationInfoManager appInfoManager = eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig());
+        EurekaClient eurekaClient = eurekaFactory.getEurekaClient(appInfoManager, new DefaultEurekaClientConfig());
 
-        configInstance = com.netflix.config.DynamicPropertyFactory.getInstance();
-        ApplicationInfoManager applicationInfoManager = initializeApplicationInfoManager(new MyDataCenterInstanceConfig());
-        EurekaClient eurekaClient = initializeEurekaClient(applicationInfoManager, new DefaultEurekaClientConfig());
-
-        applicationInfoManager.setInstanceStatus(InstanceInfo.InstanceStatus.UP);
+        appInfoManager.setInstanceStatus(InstanceInfo.InstanceStatus.UP);
         LOGGER.info("Registering with eureka server.");
-        waitForRegistrationWithEureka(eurekaClient);
+        waitForRegistrationWithEureka(name, eurekaClient, RETRY_WAIT_TIME);
         LOGGER.info("Service is up and running.");
     }
 
-    public void blockingRegister(Properties properties) {
-        register(properties);
+    void blockingRegister(String name) {
+        register(name);
     }
 
-    public void nonBlockingRegister(Properties properties) {
-        new Thread(() -> register(properties)).start();
+    void nonBlockingRegister(String name) {
+        new Thread(() -> register(name)).start();
     }
 }
