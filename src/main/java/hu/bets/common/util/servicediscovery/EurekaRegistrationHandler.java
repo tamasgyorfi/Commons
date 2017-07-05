@@ -10,6 +10,7 @@ import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.EurekaClientConfig;
+import hu.bets.common.util.EnvironmentVarResolver;
 import org.apache.log4j.Logger;
 
 import java.util.Properties;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EurekaRegistrationHandler {
 
+    public static final String EUREKA_URL = "EUREKA_URL";
     private static final Logger LOGGER = Logger.getLogger(EurekaRegistrationHandler.class);
     private DynamicPropertyFactory configInstance;
 
@@ -30,7 +32,7 @@ public class EurekaRegistrationHandler {
     }
 
     private void waitForRegistrationWithEureka(EurekaClient eurekaClient) {
-        String vipAddress = configInstance.getStringProperty("eureka.vipAddress", "sampleservice.mydomain.net").get();
+        String vipAddress = EnvironmentVarResolver.getEnvVar(EUREKA_URL);
         LOGGER.info("Checking eureka server at: " + vipAddress);
         InstanceInfo nextServerInfo = null;
         while (nextServerInfo == null) {
