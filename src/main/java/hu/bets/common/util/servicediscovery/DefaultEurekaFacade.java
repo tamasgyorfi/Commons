@@ -3,6 +3,7 @@ package hu.bets.common.util.servicediscovery;
 import hu.bets.common.util.EnvironmentVarResolver;
 
 import java.util.Properties;
+import java.util.concurrent.Future;
 
 public class DefaultEurekaFacade implements EurekaFacade {
 
@@ -30,11 +31,11 @@ public class DefaultEurekaFacade implements EurekaFacade {
         getRegistrationHandler().blockingRegister(serviceName);
     }
 
-    public void registerNonBlockingly(String serviceName) {
+    public Future<Boolean> registerNonBlockingly(String serviceName) {
         System.getProperties().put("eureka.vipAddress", serviceName);
         System.getProperties().put("eureka.name", serviceName);
 
-        getRegistrationHandler().nonBlockingRegister(serviceName);
+        return getRegistrationHandler().nonBlockingRegister(serviceName);
     }
 
     public String resolveEndpoint(String name) {

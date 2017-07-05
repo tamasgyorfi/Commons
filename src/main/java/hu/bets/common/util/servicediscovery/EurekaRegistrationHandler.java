@@ -7,6 +7,9 @@ import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.EurekaClient;
 import org.apache.log4j.Logger;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 class EurekaRegistrationHandler {
@@ -54,7 +57,14 @@ class EurekaRegistrationHandler {
         register(name);
     }
 
-    void nonBlockingRegister(String name) {
-        new Thread(() -> register(name)).start();
+    Future<Boolean> nonBlockingRegister(String name) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Boolean> retVal = executor.submit(() -> {
+            register(name);
+            return true;
+        });
+
+        executor.shutdownNow();
+        return retVal;
     }
 }
