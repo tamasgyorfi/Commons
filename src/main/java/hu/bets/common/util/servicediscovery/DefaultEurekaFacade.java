@@ -43,7 +43,10 @@ public class DefaultEurekaFacade implements EurekaFacade {
     private void setInstanceProperties(String name) {
         System.getProperties().put("eureka.vipAddress", name);
         System.getProperties().put("eureka.name", name);
-        System.getProperties().put("eureka.instance.homePageUrl", "https://" + name + ".herokuapp.com");
+
+        System.getProperties().put("eureka.homePageUrl", "https://" + name + ".herokuapp.com");
+        System.getProperties().put("eureka.hostname", "https://" + name + ".herokuapp.com");
+
     }
 
     @Override
