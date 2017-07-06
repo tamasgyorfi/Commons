@@ -9,4 +9,6 @@ public interface EurekaFacade {
     Future<Boolean> registerNonBlockingly(String serviceName);
 
     String resolveEndpoint(String name);
+
+    void unregister();
 }

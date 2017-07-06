@@ -14,10 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 class EurekaRegistrationHandler {
 
+    private EurekaClient eurekaClient;
+
     private static final Logger LOGGER = Logger.getLogger(EurekaRegistrationHandler.class);
     private static final int RETRY_WAIT_TIME = 5;
 
-    protected void waitForRegistrationWithEureka(String vipAddress, EurekaClient eurekaClient, int retrySeconds) {
+    void waitForRegistrationWithEureka(String vipAddress, EurekaClient eurekaClient, int retrySeconds) {
         LOGGER.info("Registering service with name: " + vipAddress);
         InstanceInfo nextServerInfo = null;
         int retries = 5;
@@ -44,8 +46,9 @@ class EurekaRegistrationHandler {
 
     private void register(String name) {
         EurekaFactory eurekaFactory = new EurekaFactory();
-        ApplicationInfoManager appInfoManager = eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig());
-        EurekaClient eurekaClient = eurekaFactory.getEurekaClient(appInfoManager, new DefaultEurekaClientConfig());
+        ApplicationInfoManager appInfoManager;
+        appInfoManager = eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig());
+        eurekaClient = eurekaFactory.getEurekaClient(appInfoManager, new DefaultEurekaClientConfig());
 
         appInfoManager.setInstanceStatus(InstanceInfo.InstanceStatus.UP);
         LOGGER.info("Registering with eureka server.");
@@ -66,5 +69,9 @@ class EurekaRegistrationHandler {
 
         executor.shutdownNow();
         return retVal;
+    }
+
+    public void unregister() {
+        eurekaClient.shutdown();
     }
 }
