@@ -25,23 +25,25 @@ public class DefaultEurekaFacade implements EurekaFacade {
     }
 
     public void registerBlockingly(String serviceName) {
-        System.getProperties().put("eureka.vipAddress", serviceName);
-        System.getProperties().put("eureka.name", serviceName);
-        System.getProperties().put("eureka.instance.homePageUrl", "https://" + serviceName + ".herokuapp.com");
 
+        setInstanceProperties(serviceName);
         getRegistrationHandler().blockingRegister(serviceName);
     }
 
     public Future<Boolean> registerNonBlockingly(String serviceName) {
-        System.getProperties().put("eureka.vipAddress", serviceName);
-        System.getProperties().put("eureka.name", serviceName);
-        System.getProperties().put("eureka.instance.homePageUrl", "https://" + serviceName + ".herokuapp.com");
 
+        setInstanceProperties(serviceName);
         return getRegistrationHandler().nonBlockingRegister(serviceName);
     }
 
     public String resolveEndpoint(String name) {
         return getServiceResolver().getServiceEndpoint(name);
+    }
+
+    private void setInstanceProperties(String name) {
+        System.getProperties().put("eureka.vipAddress", name);
+        System.getProperties().put("eureka.name", name);
+        System.getProperties().put("eureka.instance.homePageUrl", "https://" + name + ".herokuapp.com");
     }
 
     @Override
