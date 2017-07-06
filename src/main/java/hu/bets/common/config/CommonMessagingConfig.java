@@ -4,8 +4,8 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import hu.bets.common.util.EnvironmentVarResolver;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeoutException;
 public class CommonMessagingConfig {
 
     private static final String MESSAGING_URI = "CLOUDAMQP_URL";
-    private static final Logger LOGGER = Logger.getLogger(CommonMessagingConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommonMessagingConfig.class);
 
     @Bean
     @Scope("prototype")
@@ -28,7 +28,7 @@ public class CommonMessagingConfig {
         try {
             return connection.createChannel();
         } catch (IOException e) {
-            LOGGER.error(e);
+            LOGGER.error("unable to create messaging channel.", e);
         }
 
         return null;

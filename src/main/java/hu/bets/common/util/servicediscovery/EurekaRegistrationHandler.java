@@ -5,7 +5,8 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.appinfo.MyDataCenterInstanceConfig;
 import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.EurekaClient;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,7 +17,7 @@ class EurekaRegistrationHandler {
 
     private EurekaClient eurekaClient;
 
-    private static final Logger LOGGER = Logger.getLogger(EurekaRegistrationHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EurekaRegistrationHandler.class);
     private static final int RETRY_WAIT_TIME = 5;
 
     void waitForRegistrationWithEureka(String vipAddress, EurekaClient eurekaClient, int retrySeconds) {
@@ -41,7 +42,6 @@ class EurekaRegistrationHandler {
                 }
             }
         }
-
     }
 
     private void register(String name) {

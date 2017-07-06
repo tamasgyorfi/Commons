@@ -1,18 +1,15 @@
 package hu.bets.common.util.hash;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 public class MD5HashGenerator implements HashGenerator {
 
-    private static final Logger LOGGER = Logger.getLogger(MD5HashGenerator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MD5HashGenerator.class);
 
     public String getHash(Object object) {
         try {

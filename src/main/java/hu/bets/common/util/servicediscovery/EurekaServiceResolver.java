@@ -4,11 +4,12 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.appinfo.MyDataCenterInstanceConfig;
 import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.EurekaClient;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class EurekaServiceResolver {
 
-    private static final Logger LOGGER = Logger.getLogger(EurekaServiceResolver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EurekaServiceResolver.class);
 
     private String getEndpointByVipAddress(String vipAddress, EurekaClient eurekaClient) {
 
