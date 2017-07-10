@@ -2,8 +2,6 @@ package hu.bets.common.util.servicediscovery;
 
 import com.netflix.appinfo.ApplicationInfoManager;
 import com.netflix.appinfo.InstanceInfo;
-import com.netflix.appinfo.MyDataCenterInstanceConfig;
-import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.EurekaClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,10 +43,9 @@ class EurekaRegistrationHandler {
     }
 
     private void register(String name) {
-        EurekaFactory eurekaFactory = new EurekaFactory();
-        ApplicationInfoManager appInfoManager;
-        appInfoManager = eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig());
-        eurekaClient = eurekaFactory.getEurekaClient(appInfoManager, new DefaultEurekaClientConfig());
+        EurekaFactory eurekaFactory = EurekaFactory.getInstance();
+        ApplicationInfoManager appInfoManager = eurekaFactory.getApplicationInfoManager();
+        eurekaClient = eurekaFactory.getEurekaClient();
 
         appInfoManager.setInstanceStatus(InstanceInfo.InstanceStatus.UP);
         LOGGER.info("Registering with eureka server.");

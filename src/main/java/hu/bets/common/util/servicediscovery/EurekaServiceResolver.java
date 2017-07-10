@@ -1,8 +1,6 @@
 package hu.bets.common.util.servicediscovery;
 
 import com.netflix.appinfo.InstanceInfo;
-import com.netflix.appinfo.MyDataCenterInstanceConfig;
-import com.netflix.discovery.DefaultEurekaClientConfig;
 import com.netflix.discovery.EurekaClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +24,12 @@ class EurekaServiceResolver {
     }
 
     String getServiceEndpoint(String name) {
-        EurekaFactory eurekaFactory = new EurekaFactory();
+        EurekaFactory eurekaFactory = EurekaFactory.getInstance();
 
-        EurekaClient eurekaClient = eurekaFactory.getEurekaClient(eurekaFactory.getApplicationInfoManager(new MyDataCenterInstanceConfig()), new DefaultEurekaClientConfig());
-        return getEndpointByVipAddress(name, eurekaClient);
+        EurekaClient eurekaClient = eurekaFactory.getEurekaClient();
+        String address = getEndpointByVipAddress(name, eurekaClient);
+        eurekaClient.shutdown();
+
+        return address;
     }
 }

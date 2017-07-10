@@ -7,6 +7,7 @@ import java.util.concurrent.Future;
 
 public class DefaultEurekaFacade implements EurekaFacade {
 
+    private static final String EUREKA_URL = "EUREKA_URL";
     private static EurekaRegistrationHandler registrationHandler;
     private static EurekaServiceResolver serviceResolver;
 
@@ -15,7 +16,7 @@ public class DefaultEurekaFacade implements EurekaFacade {
         props.put("eureka.region", "default");
         props.put("eureka.preferSameZone", "true");
         props.put("eureka.shouldUseDns", "false");
-        props.put("eureka.serviceUrl.default", EnvironmentVarResolver.getEnvVar(EurekaFactory.EUREKA_URL));
+        props.put("eureka.serviceUrl.default", EnvironmentVarResolver.getEnvVar(EUREKA_URL));
 
         System.getProperties().putAll(props);
     }
