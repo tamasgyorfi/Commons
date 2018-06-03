@@ -17,7 +17,11 @@ public class SchemaValidator {
             Schema schema = SchemaLoader.load(rawSchema);
             schema.validate(new JSONObject(payload));
         } catch (ValidationException exception) {
-            throw new InvalidScemaException(exception);
+            StringBuilder allErrors = new StringBuilder(exception.getMessage());
+            for (ValidationException exc: exception.getCausingExceptions()) {
+                allErrors.append("\n").append(exc.getMessage());
+            }
+            throw new InvalidScemaException(allErrors.toString());
         } catch (IOException exception) {
             throw new IllegalArgumentException("Error opening schema file. ", exception);
         }
