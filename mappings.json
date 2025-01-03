@@ -1,0 +1,15 @@
+{
+    "mappings": [
+        {
+            "name": "MBH",
+            "url": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
+            "jobElementSelector": "//div[contains(@class, 'positionList__positionRow__item positionList__positionRow__item--positionName positionList__positionRow--rightBorder')]/div",
+            "pagerElementSelector": "",
+            "pagerElementClick": "",
+            "pagerType": "none",
+            "jobUrlPrefix": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
+            "cookies": [
+            ]
+        }
+    ]
+}
