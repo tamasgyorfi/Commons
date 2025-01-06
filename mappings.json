@@ -1,15 +1,193 @@
 {
     "mappings": [
         {
-            "name": "MBH",
-            "url": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
-            "jobElementSelector": "//div[contains(@class, 'positionList__positionRow__item positionList__positionRow__item--positionName positionList__positionRow--rightBorder')]/div",
-            "pagerElementSelector": "",
-            "pagerElementClick": "",
-            "pagerType": "none",
-            "jobUrlPrefix": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
+          "name": "4iG",
+          "url": "https://karrier.4ig.hu/allasok",
+          "jobElementSelector": "//a[@class='jobList__item__title']",
+          "pagerElementSelector": "//span[contains(@class, 'pager-element')]",
+          "pagerElementClick": "//span[contains(@class, 'pager-element') and text()='%d']",
+          "pagerType": "numbers",
+          "jobUrlPrefix": "https://karrier.4ig.hu",
             "cookies": [
+                    {
+                        "name":   "spublic",
+                        "value":  "474c2f268917841c908939c16bd3b274",
+                        "domain": "karrier.4ig.hu",
+                        "path":   "/"
+                    },
+                    {
+                        "name":   "accepted_cookies",
+                        "value":  "functional",
+                        "domain": "karrier.4ig.hu",
+                        "path":   "/"
+                    },
+                    {
+                        "name":   "cookie_terms_accepted",
+                        "value":  "1",
+                        "domain": "karrier.4ig.hu",
+                        "path":   "/"
+                    },
+                    {
+                        "name":   "cookie_terms_accepted_date",
+                        "value":  "Fri Dec 27 2026",
+                        "domain": "karrier.4ig.hu",
+                        "path":   "/"
+                    }
             ]
-        }
+        },
+      {
+        "name": "OTP",
+        "url": "https://karrier.otpbank.hu/search/",
+        "jobElementSelector": "//span[@class='jobTitle visible-phone']/a[@class='jobTitle-link']",
+        "pagerElementSelector": "//div[@class='pagination-top clearfix']/div[@class='paginationShell clearfix']/div[@class='well well-lg pagination-well pagination']/ul[@class='pagination']/li[@class]/a",
+        "pagerElementClick": "//a[text()='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://karrier.otpbank.hu/",
+        "cookies": []
+      },
+      {
+        "name": "K&H",
+        "url": "https://karrier.kh.hu/allasok",
+        "jobElementSelector": "//div[contains(@class, 'job_item_inner')]/h2/a",
+        "pagerElementSelector": "//div[@class='pager-public']/a",
+        "pagerElementClick": "//div[@class='pager-public']/a[contains(@href, '%d')]",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://karrier.kh.hu/",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "MBH",
+        "url": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
+        "jobElementSelector": "//div[contains(@class, 'positionList__positionRow__item positionList__positionRow__item--positionName positionList__positionRow--rightBorder')]/div",
+        "pagerElementSelector": "",
+        "pagerElementClick": "",
+        "pagerType": "none",
+        "jobUrlPrefix": "https://karrier.mbhbank.hu/DataCenter/Registration/JobAdvertisements/",
+        "cookies": []
+      },
+      {
+        "name": "Raiffeisen",
+        "url": "https://raiffeisen.karrierportal.hu/allasok",
+        "jobElementSelector": "//div[contains(@class, 'jobList__item__title')]/a",
+        "pagerElementSelector": "//span[contains(@class, 'pager-element')]",
+        "pagerElementClick": "//span[contains(@class, 'pager-element') and text()='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://raiffeisen.karrierportal.hu/",
+        "cookies": [
+          {
+            "name":   "spublic",
+            "value":  "474c2f268917841c908939c16bd3b274",
+            "domain": "raiffeisen.karrierportal.hu",
+            "path":   "/"
+          },
+          {
+            "name":   "accepted_cookies",
+            "value":  "functional",
+            "domain": "raiffeisen.karrierportal.hu",
+            "path":   "/"
+          },
+          {
+            "name":   "cookie_terms_accepted",
+            "value":  "1",
+            "domain": "raiffeisen.karrierportal.hu",
+            "path":   "/"
+          },
+          {
+            "name":   "cookie_terms_accepted_date",
+            "value":  "Fri Dec 27 2026",
+            "domain": "raiffeisen.karrierportal.hu",
+            "path":   "/"
+          }
+        ]
+      },
+      {
+        "name": "Unicredit",
+        "url": "https://careers.unicredit.eu/hu_HU/jobsuche/SearchJobs/?1286=%5B1888%5D",
+        "jobElementSelector": "//h3[contains(@class, 'article__header__text__title')]/a",
+        "pagerElementSelector": "//div[contains(@class, 'list-controls--bottom')]/div[contains(@class, 'list-controls__pagination')]/a",
+        "pagerElementClick": "//div[contains(@class, 'list-controls--bottom')]/div[contains(@class, 'list-controls__pagination')]/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "CIB Bank",
+        "url": "https://allasajanlatok.cib.hu/go/AKTU%C3%81LIS-%C3%81LL%C3%81SAJ%C3%81NLATOK/8829002/",
+        "jobElementSelector": "//span[contains(@class, 'jobTitle')]/a",
+        "pagerElementSelector": "//ul[contains(@class, 'pagination')]/li",
+        "pagerElementClick": "//ul[contains(@class, 'pagination')]/li/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://allasajanlatok.cib.hu/",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Erste Bank",
+        "url": "https://karrier.erstebank.hu/allasok",
+        "jobElementSelector": "//a[contains(@class, 'jobList__item__title')]",
+        "pagerElementSelector": "",
+        "pagerElementClick": "",
+        "pagerType": "none",
+        "jobUrlPrefix": "https://karrier.erstebank.hu/",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Telekom",
+        "url": "https://www.telekom.hu/karrier",
+        "jobElementSelector": "//p[contains(@class, 'result-card__job')]",
+        "pagerElementSelector": "//button[contains(@class, 'result-box__button')]",
+        "pagerElementClick":    "//button[contains(@class, 'result-box__button')]",
+        "pagerType": "more",
+        "jobUrlPrefix": "https://www.telekom.hu/karrier",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Yettel",
+        "url": "https://jobs.ceetelcogroup.com/yettel/search/?q=&q2=&alertId=&title=&location=HU&department=",
+        "jobElementSelector": "//a[contains(@class, 'jobTitle-link')]",
+        "pagerElementSelector": "//ul[contains(@class, 'pagination')]/li[@class=' ' or @class='active']",
+        "pagerElementClick":    "//ul[contains(@class, 'pagination')]/li/a[text()='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://jobs.ceetelcogroup.com/",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "One",
+        "url": "https://karrier.4iggroup.hu/onehungary/go/%C3%81ll%C3%A1saink-ONE/9375755/",
+        "jobElementSelector": "//a[contains(@class, 'jobTitle-link')]",
+        "pagerElementSelector": "//div[@class='tile-more-results-container' and not(contains(@style, 'display: none;'))]",
+        "pagerElementClick":    "//button[@id='tile-more-results']",
+        "pagerType": "more",
+        "jobUrlPrefix": "https://karrier.4iggroup.hu/",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Nokia",
+        "url": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions?location=Hungary&locationId=300000000471730&locationLevel=country&mode=location",
+        "jobElementSelector": "//span[contains(@class, 'job-tile__title')]",
+        "pagerElementSelector": "",
+        "pagerElementClick":    "",
+        "pagerType": "continuous",
+        "jobUrlPrefix": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions?location=Hungary&locationId=300000000471730&locationLevel=country&mode=location",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Ericsson",
+        "url": "https://jobs.ericsson.com/careers?location=Budapest%2C%20Hungary&pid=563121761866376&domain=ericsson.com&sort_by=relevance&triggerGoButton=true",
+        "jobElementSelector": "//div[contains(@class, 'position-title')]",
+        "pagerElementSelector": "//button[contains(@class, 'show-more-positions')]",
+        "pagerElementClick":    "//button[contains(@class, 'show-more-positions')]",
+        "pagerType": "more",
+        "jobUrlPrefix": "https://jobs.ericsson.com/careers?location=Budapest%2C%20Hungary&pid=563121761866376&domain=ericsson.com&sort_by=relevance&triggerGoButton=true",
+        "cookies": [
+        ]
+      }
     ]
 }
