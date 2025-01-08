@@ -221,6 +221,28 @@
         "jobUrlPrefix": "https://molgroup.taleo.net/",
         "cookies": [
         ]
+      },
+      {
+        "name": "PWC",
+        "url": "https://jobs-cee.pwc.com/hu/hu/search-results",
+        "jobElementSelector": "//div[@class='job-title']/span",
+        "pagerElementSelector": "//ul[contains(@class, 'pagination au-target')]/li",
+        "pagerElementClick":    "//ul[contains(@class, 'pagination au-target')]/li/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://jobs-cee.pwc.com/hu/hu/search-results",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Deloitte",
+        "url": "https://apply.deloittece.com/hu_HU/careers/SearchJobs/?523=%5B5514%5D&523_format=1482&listFilterMode=1&jobRecordsPerPage=10&",
+        "jobElementSelector": "//div[@class='article__header__text']/h3/a",
+        "pagerElementSelector": "//div[contains(@class, 'list-controls list-controls--bottom clearfix')]/div[contains(@class, 'list-controls__pagination')]/a",
+        "pagerElementClick":    "//div[contains(@class, 'list-controls list-controls--bottom clearfix')]/div[contains(@class, 'list-controls__pagination')]/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "",
+        "cookies": [
+        ]
       }
     ]
 }
