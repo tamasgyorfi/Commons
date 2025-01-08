@@ -188,6 +188,39 @@
         "jobUrlPrefix": "https://jobs.ericsson.com/careers?location=Budapest%2C%20Hungary&pid=563121761866376&domain=ericsson.com&sort_by=relevance&triggerGoButton=true",
         "cookies": [
         ]
+      },
+      {
+        "name": "NN",
+        "url": "https://www.nn.hu/karrier/kozponti-allasajanlataink",
+        "jobElementSelector": "//div[contains(@class, 'banner-1-button')]/span[2]",
+        "pagerElementSelector": "",
+        "pagerElementClick":    "",
+        "pagerType": "none",
+        "jobUrlPrefix": "https://www.nn.hu/karrier/kozponti-allasajanlataink",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "Generali",
+        "url": "https://join.generalicee.com/search/?createNewAlert=false&q=&locationsearch=HU&optionsFacetsDD_country=&optionsFacetsDD_city=&optionsFacetsDD_customfield3=&optionsFacetsDD_customfield4=&optionsFacetsDD_customfield2=",
+        "jobElementSelector": "//a[contains(@class, 'jobTitle-link')]",
+        "pagerElementSelector": "//ul[contains(@class, 'pagination')]/li",
+        "pagerElementClick":    "//ul[contains(@class, 'pagination')]/li/a[text()='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://join.generalicee.com",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "MOL",
+        "url": "https://molgroup.taleo.net/careersection/external/jobsearch.ftl?lang=hu&location=2205100397",
+        "jobElementSelector": "//div[@class='relative']/div[@class='absolute']/span/a",
+        "pagerElementSelector": "//ul[contains(@class, 'pager')]/li",
+        "pagerElementClick":    "//ul[contains(@class, 'pager')]/li/a[text()='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://molgroup.taleo.net/",
+        "cookies": [
+        ]
       }
     ]
 }
