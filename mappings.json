@@ -212,6 +212,17 @@
         ]
       },
       {
+        "name": "Groupama",
+        "url": "https://groupama.karrierportal.hu/allasok/kozpont",
+        "jobElementSelector": "//div[@class='jobList__item__title']",
+        "pagerElementSelector": "//div[contains(@class, 'pager-box')]/span",
+        "pagerElementClick":    "//div[contains(@class, 'pager-box')]/span[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://groupama.karrierportal.hu/allasok/kozpont",
+        "cookies": [
+        ]
+      },
+      {
         "name": "MOL",
         "url": "https://molgroup.taleo.net/careersection/external/jobsearch.ftl?lang=hu&location=2205100397",
         "jobElementSelector": "//div[@class='relative']/div[@class='absolute']/span/a",
@@ -241,6 +252,28 @@
         "pagerElementClick":    "//div[contains(@class, 'list-controls list-controls--bottom clearfix')]/div[contains(@class, 'list-controls__pagination')]/a[normalize-space(text()) ='%d']",
         "pagerType": "numbers",
         "jobUrlPrefix": "",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "KPMG",
+        "url": "https://kpmg.hrfelho.hu/allasajanlataink/tapasztalt?utm_media=kpmg.hu/karrier",
+        "jobElementSelector": "//span[@class='job-title']",
+        "pagerElementSelector": "//div[contains(@class, 'job-pager')]/ul/li",
+        "pagerElementClick":    "//div[contains(@class, 'job-pager')]/ul/li/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://kpmg.hrfelho.hu/allasajanlataink/tapasztalt?utm_media=kpmg.hu/karrier",
+        "cookies": [
+        ]
+      },
+      {
+        "name": "EY",
+        "url": "https://careers.ey.com/search/?createNewAlert=false&q=&locationsearch=&optionsFacetsDD_country=HU&optionsFacetsDD_customfield1=",
+        "jobElementSelector": "//a[@class='jobTitle-link']",
+        "pagerElementSelector": "//ul[@class='pagination']/li",
+        "pagerElementClick":    "//ul[@class='pagination']/li/a[normalize-space(text()) ='%d']",
+        "pagerType": "numbers",
+        "jobUrlPrefix": "https://careers.ey.com/",
         "cookies": [
         ]
       }
