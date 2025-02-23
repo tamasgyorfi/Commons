@@ -276,6 +276,17 @@
         "jobUrlPrefix": "https://careers.ey.com/",
         "cookies": [
         ]
-      }
+      },
+        {
+            "name": "SAP",
+            "url": "https://jobs.sap.com/go/Hungary/8806401/25/?q=&sortColumn=referencedate&sortDirection=desc&scrollToTable=true",
+            "jobElementSelector": "//a[@class='jobTitle-link']",
+            "pagerElementSelector": "//div[contains(@class, 'pagination-bottom')]/div/div/ul[contains(@class, 'pagination')]/li",
+            "pagerElementClick":    "//div[contains(@class, 'pagination-bottom')]/div/div/ul[contains(@class, 'pagination')]/li/a[normalize-space(text()) ='%d']",
+            "pagerType": "numbers",
+            "jobUrlPrefix": "https://jobs.sap.com/",
+            "cookies": [
+            ]
+        }
     ]
 }
